@@ -1,0 +1,60 @@
+﻿<Page x:Class="QR_Checking_winVersion.AP_UsersTeach"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:QR_Checking_winVersion"
+      mc:Ignorable="d" 
+      d:DesignHeight="354" d:DesignWidth="726"
+      Title="AppConfig">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/QR_Checking_winVersion;component/OtherPagesResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid x:Name="MainGrid" Background="White">
+
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="344" Margin="195,0,0,0" VerticalAlignment="Top" Width="521" IsReadOnly="True" Visibility="Visible"/>
+        <Label x:Name="StateLabel" Content="Нет данных" HorizontalAlignment="Center" VerticalAlignment="Center" Height="60" Width="153" FontSize="26" Foreground="#FF8C8C8C" Margin="380,154,193.4,139.6" Visibility="Hidden"/>
+
+        <TreeView x:Name="UsersTeachFilter" Visibility="Visible" HorizontalAlignment="Left" Height="344" VerticalAlignment="Top" Width="190" Background="#FFE7E7E7">
+            <Label Content="Фильтр:" FontSize="18"/>
+            <TextBox x:Name="FullNameUsersTeachFilter" TextChanged="PageFilters" Height="23" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Имя преподавателя"/>
+            <TextBox x:Name="EmailUsersTeachFilter" TextChanged="PageFilters" Height="23" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Email"/>
+            <TextBox x:Name="PhoneNumberUsersTeachFilter" TextChanged="PageFilters" Height="23" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Номер телефона"/>
+            <TextBox x:Name="SpecializationUsersTeachFilter" TextChanged="PageFilters" Height="23" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Специализация"/>
+            <TextBox x:Name="RoleUsersTeachFilter" TextChanged="PageFilters" Height="23" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Роль"/>
+            <TextBox x:Name="LoginUsersTeachFilter" TextChanged="PageFilters" Height="23" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Логин"/>
+            <TextBox x:Name="ActiveUsersTeachFilter" TextChanged="PageFilters" Height="23" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Активно"/>
+            <Button x:Name="ClearTextBoxesButton" Content="Очистить" Width="123" Style="{StaticResource other_buttons}" Height="22" Click="ClearTextBoxesButton_Click" Foreground="White"/>
+
+            <Label Content="Данные:" FontSize="18"/>
+            <TextBox x:Name="IdUsersTeach" MaxLength="9" materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" Height="23" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="ID преподавателя*" PreviewTextInput="IdUsersTeach_PreviewTextInput" PreviewKeyDown="SpaceInputBlock"/>
+            <TextBox x:Name="NameUsersTeach" MaxLength="50" materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" Height="23" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Имя" PreviewTextInput="NameUsersTeach_PreviewTextInput" PreviewKeyDown="SpaceInputBlock"/>
+            <TextBox x:Name="SurnameUsersTeach" MaxLength="50" materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" Height="23" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Фамилия" PreviewTextInput="SurnameUsersTeach_PreviewTextInput" PreviewKeyDown="SpaceInputBlock"/>
+            <TextBox x:Name="PatronymicUsersTeach" Height="23" MaxLength="50"  materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Отчество (если есть)" PreviewTextInput="PatronymicUsersTeach_PreviewTextInput" PreviewKeyDown="SpaceInputBlock"/>
+            <TextBox x:Name="EmailUsersTeach" Height="23" MaxLength="100"  materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Email" PreviewTextInput="EmailUsersTeach_PreviewTextInput" PreviewKeyDown="SpaceInputBlock"/>
+            <TextBox x:Name="PhoneNumberUsersTeach" MaxLength="13"  materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" Height="23" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Номер телефона" PreviewTextInput="PhoneNumberUsersTeach_PreviewTextInput" PreviewKeyDown="SpaceInputBlock"/>
+            <TextBox x:Name="SpecializationUsersTeach" MaxLength="100" materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" Height="23" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Специализация" PreviewTextInput="SpecializationUsersTeach_PreviewTextInput" PreviewKeyDown="SpaceInputBlock"/>
+            <ComboBox x:Name="RoleUsersTeach" Height="23" materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" Width="120" materialDesign:HintAssist.Hint="Роль">
+                <ComboBoxItem>Admin</ComboBoxItem>
+                <ComboBoxItem>User</ComboBoxItem>
+            </ComboBox>
+            <TextBox x:Name="LoginUsersTeach" MaxLength="20" Height="23" materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Логин" PreviewTextInput="LoginUsersTeach_PreviewTextInput" PreviewKeyDown="SpaceInputBlock" />
+            <TextBox x:Name="PasswordUsersTeach" MaxLength="20" Height="23" materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" TextWrapping="Wrap" Width="120" materialDesign:HintAssist.Hint="Пароль" PreviewTextInput="PasswordUsersTeach_PreviewTextInput" PreviewKeyDown="SpaceInputBlock"/>
+            <ComboBox x:Name="ActiveUsersTeach" Height="23" materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" Width="120" materialDesign:HintAssist.Hint="Активно">
+                <ComboBoxItem>Да</ComboBoxItem>
+                <ComboBoxItem>Нет</ComboBoxItem>
+            </ComboBox>
+            <Button x:Name="InsertUsersTeach" Content="Добавить" Width="123" Style="{StaticResource other_buttons}" Height="22" Click="InsertUsersTeach_Click"/>
+            <Button x:Name="UpdateUsersTeach" Content="Изменить" Width="123" Style="{StaticResource other_buttons}" Height="22" Click="UpdateUsersTeach_Click"/>
+            <Button x:Name="DisableUsersTeach" Content="Деактивировать" Width="123" Style="{StaticResource other_buttons}" Height="22" Click="DisableUsersTeach_Click"/>
+        </TreeView>
+    </Grid>
+</Page>
+

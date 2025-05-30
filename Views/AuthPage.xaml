@@ -1,0 +1,187 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QR_Checking_winVersion"
+        x:Class="QR_Checking_winVersion.MainWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Авторизация" Height="450" Width="379.2" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/QR_Checking_winVersion;component/OtherPagesResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="Black" Offset="1"/>
+            <GradientStop Color="#FF031B32" Offset="0.493"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="109*"/>
+            <RowDefinition Height="310*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="ToolBar" Background="Transparent" Grid.Row="0" MouseDown="ToolBar_MouseDown">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Image x:Name="Hide_button" Margin="5,4,5,6.6" Height="15" Width="15" Style="{StaticResource hideButton_change}" MouseDown="Hide_button_MouseDown"/>
+                <Image x:Name="Close_button" Margin="5" Height="15" Width="15" Style="{StaticResource closeButton_change}" MouseDown="Close_button_MouseDown"/>
+            </StackPanel>
+        </Grid>
+
+
+
+        <Grid x:Name="RegisterControls" Background="Transparent" Grid.Row="2" Visibility="Hidden">
+            <Label Content="Регистрация" HorizontalAlignment="Center" Margin="106,18,97.2,0" VerticalAlignment="Top" Height="52" Width="176" Foreground="White" FontSize="30" FontFamily="Calibri"/>
+            <TextBox x:Name="_LoginReg" materialDesign:HintAssist.Hint="Введите логин" HorizontalAlignment="Center" Height="26" Margin="71,73,71.2,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Background="#FF425160" BorderBrush="#FF031B32" Foreground="White" FontSize="14" FontFamily="Calibri" PreviewTextInput="_LoginReg_PreviewTextInput" PreviewKeyDown="_LoginReg_PreviewKeyDown" CaretBrush="#FF2196F3" SelectionBrush="#FF90CAF9" MaxLength="20"/>
+            <TextBox x:Name="_EmailReg" materialDesign:HintAssist.Hint="Ваш Email" HorizontalAlignment="Center" Height="26" Margin="71,114,71.2,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Background="#FF425160" BorderBrush="#FF031B32" Foreground="White" FontSize="14" FontFamily="Calibri" PreviewTextInput="_EmailReg_PreviewTextInput" PreviewKeyDown="_EmailReg_PreviewKeyDown" MaxLength="100"/>
+            <PasswordBox x:Name="_PasswordReg" materialDesign:HintAssist.Hint="Введите пароль" HorizontalAlignment="Left" Margin="71,155,0,0" VerticalAlignment="Top" Width="237" Background="#FF425160" Foreground="White" BorderBrush="#FF031B32" CaretBrush="{x:Null}" SelectionBrush="#FF0078D7" Height="26" FontSize="14" PreviewTextInput="_PasswordReg_PreviewTextInput" PreviewKeyDown="_PasswordReg_PreviewKeyDown" MaxLength="20"/>
+            <PasswordBox x:Name="_PasswordRegRepeat" materialDesign:HintAssist.Hint="Повторите пароль" HorizontalAlignment="Left" Margin="71,195,0,0" VerticalAlignment="Top" Width="237" Background="#FF425160" Foreground="White" BorderBrush="#FF031B32" CaretBrush="{x:Null}" SelectionBrush="#FF0078D7" Height="26" FontSize="14" PreviewTextInput="_PasswordRegRepeat_PreviewTextInput" PreviewKeyDown="_PasswordRegRepeat_PreviewKeyDown" MaxLength="20"/>
+            <Image x:Name="Loading_ImageReg" HorizontalAlignment="Left" Height="24" Margin="179,241,0,0" VerticalAlignment="Top" Width="24" Source="/QR_Checking_winVersion;component/Resources/loading.png" Visibility="Hidden">
+                <Image.RenderTransform>
+                    <RotateTransform x:Name="rotate2"
+                         CenterX="12"
+                         CenterY="12"/>
+                </Image.RenderTransform>
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="rotate2"
+                                     Storyboard.TargetProperty="Angle"
+                                     By="360" Duration="0:0:1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Image.Triggers>
+            </Image>
+            <Button x:Name="reg_button" Content="Зарегистрироваться" HorizontalAlignment="Center" Margin="71,238,71.2,0" VerticalAlignment="Top" Width="237" Height="29" FontSize="18" FontFamily="Calibri" Style="{StaticResource auth_button}" Cursor="Hand" Click="reg_button_Click"/>
+            <Label x:Name="hasAccountLabel" Content="Уже есть аккаунт ?" HorizontalAlignment="Center" Margin="136,273,131.2,0" VerticalAlignment="Top" Width="112" Height="26" Style="{StaticResource authPageLinks_change}" Cursor="Hand" MouseDown="hasAccountLabel_MouseDown"/>
+        </Grid>
+
+        <Grid x:Name="ForgetPassControls" Background="Transparent" Grid.Row="2" Visibility="Hidden">
+            <Label Content="Восстановление аккаунта" HorizontalAlignment="Center" Margin="26,18,18.2,0" VerticalAlignment="Top" Height="52" Width="335" Foreground="White" FontSize="30" FontFamily="Calibri"/>
+            <TextBox x:Name="FillEmail" materialDesign:HintAssist.Hint="Ваш Email" HorizontalAlignment="Center" Height="26" Margin="71,88,71.2,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Background="#FF425160" BorderBrush="#FF031B32" Foreground="White" FontSize="14" FontFamily="Calibri" PreviewKeyDown="FillEmail_PreviewKeyDown" MaxLength="100" PreviewTextInput="FillEmail_PreviewTextInput" />
+            <Image x:Name="Loading_ImageFP" HorizontalAlignment="Left" Height="24" Margin="179,191,0,0" Grid.Row="2" VerticalAlignment="Top" Width="24" Source="/QR_Checking_winVersion;component/Resources/loading.png" Visibility="Hidden">
+                <Image.RenderTransform>
+                    <RotateTransform x:Name="rotate3"
+                         CenterX="12"
+                         CenterY="12"/>
+                </Image.RenderTransform>
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="rotate3"
+                                     Storyboard.TargetProperty="Angle"
+                                     By="360" Duration="0:0:1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Image.Triggers>
+            </Image>
+            <Button x:Name="send_password" Content="Отправить" HorizontalAlignment="Center" Margin="71,189,71.2,0" VerticalAlignment="Top" Width="237" Height="29" FontSize="18" FontFamily="Calibri" Style="{StaticResource auth_button}" Cursor="Hand" Click="send_password_Click"/>
+            <Label x:Name="back_label" Content="Отмена" HorizontalAlignment="Center" Margin="165,231,162.2,0" VerticalAlignment="Top" Width="52" Height="26" Style="{StaticResource authPageLinks_change}" Cursor="Hand" MouseDown="back_label_MouseDown" />
+        </Grid>
+
+
+        <Grid x:Name="AcceptEmailControls" Background="Transparent" Grid.Row="2" Visibility="Hidden">
+            <Label Content="Подтверждение Email" HorizontalAlignment="Center" Margin="46,18,41.2,0" VerticalAlignment="Top" Height="52" Width="292" Foreground="White" FontSize="30" FontFamily="Calibri"/>
+            <TextBox x:Name="FillCode" materialDesign:HintAssist.Hint="Код из Email" HorizontalAlignment="Center" Height="26" Margin="71,88,71.2,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Background="#FF425160" BorderBrush="#FF031B32" Foreground="White" FontSize="14" FontFamily="Calibri" MaxLength="8" />
+            <Image x:Name="Loading_ImageAE" HorizontalAlignment="Left" Height="24" Margin="179,191,0,0" Grid.Row="2" VerticalAlignment="Top" Width="24" Source="/QR_Checking_winVersion;component/Resources/loading.png" Visibility="Hidden">
+                <Image.RenderTransform>
+                    <RotateTransform x:Name="rotate4"
+                         CenterX="12"
+                         CenterY="12"/>
+                </Image.RenderTransform>
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="rotate4"
+                                     Storyboard.TargetProperty="Angle"
+                                     By="360" Duration="0:0:1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Image.Triggers>
+            </Image>
+            <Button x:Name="Accept_Code" Content="Отправить" HorizontalAlignment="Center" Margin="71,189,71.2,0" VerticalAlignment="Top" Width="237" Height="29" FontSize="18" FontFamily="Calibri" Style="{StaticResource auth_button}" Cursor="Hand" Click="Accept_Code_Click"/>
+            <Label x:Name="Cancel_Label" Content="Отмена" HorizontalAlignment="Center" Margin="165,231,162.2,0" VerticalAlignment="Top" Width="52" Height="26" Style="{StaticResource authPageLinks_change}" Cursor="Hand" MouseDown="Cancel_Label_MouseDown"  />
+        </Grid>
+
+        <Grid x:Name="AuthControls" Background="Transparent" Grid.Row="2" Visibility="Hidden">
+            <Label Content="Авторизация" HorizontalAlignment="Center" Margin="99,18.4,97.8,0" Grid.Row="2" VerticalAlignment="Top" Height="52" Width="176" Foreground="White" FontSize="30" FontFamily="Calibri"/>
+            <TextBox x:Name="_Login" materialDesign:HintAssist.Hint="Логин" materialDesign:TextFieldAssist.CharacterCounterVisibility="Collapsed" HorizontalAlignment="Center" Height="26" Margin="71,88,71.2,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="237" Background="#FF425160" BorderBrush="#FF031B32" Foreground="White" FontSize="14" FontFamily="Calibri" PreviewTextInput="_Login_PreviewTextInput" PreviewKeyDown="_Login_PreviewKeyDown" MaxLength="20"/>
+            <PasswordBox x:Name="_Password" materialDesign:HintAssist.Hint="Пароль" HorizontalAlignment="Center" Height="26" Margin="71,133,71.2,0" VerticalAlignment="Top" Width="237" Background="#FF425160" BorderBrush="#FF031B32" Foreground="White" FontSize="14" FontFamily="Calibri" PreviewTextInput="_Password_PreviewTextInput" PreviewKeyDown="_Password_PreviewKeyDown" MaxLength="20" />
+            
+            <Image x:Name="Loading_Image"
+                   HorizontalAlignment="Left"
+                   Height="24" Margin="179,191,0,0"
+                   Grid.Row="2"
+                   VerticalAlignment="Top"
+                   Width="24"
+                   Source="/QR_Checking_winVersion;component/Resources/loading.png"
+                   Visibility="Hidden">
+                <Image.RenderTransform>
+                    <RotateTransform x:Name="rotate"
+                         CenterX="12"
+                         CenterY="12"/>
+                </Image.RenderTransform>
+                <Image.Triggers>
+                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard RepeatBehavior="Forever">
+                                <DoubleAnimation Storyboard.TargetName="rotate"
+                                     Storyboard.TargetProperty="Angle"
+                                     By="360" Duration="0:0:1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Image.Triggers>
+            </Image>
+            
+            <Button x:Name="enter_button" Content="Войти" HorizontalAlignment="Center" Margin="68,188.4,67.8,0" Grid.Row="2" VerticalAlignment="Top" Width="237" Height="29" FontSize="18" FontFamily="Calibri" Style="{StaticResource auth_button}" Click="enter_button_Click" Cursor="Hand"/>
+            <Label x:Name="forgetPass" Content="Забыли пароль ?" HorizontalAlignment="Center" Margin="139,231,135.2,0" VerticalAlignment="Top" Width="105" Height="26" Style="{StaticResource authPageLinks_change}" Cursor="Hand" MouseDown="forgetPass_MouseDown"/>
+            <Label x:Name="hasNoAccount" Content="Нет аккаунта ?" HorizontalAlignment="Center" Margin="145,254,144.2,0" Grid.Row="0" VerticalAlignment="Top" Width="90" Height="26" Style="{StaticResource authPageLinks_change}" Cursor="Hand" MouseDown="hasNoAccount_MouseDown" />
+        </Grid>
+
+        <Grid x:Name="logo" Background="Transparent" Grid.Row="1" MouseDown="logo_MouseDown">
+            <Image Margin="44,8.2,235.8,9.6" Source="/QR_Checking_winVersion;component/Resources/logo.png" Stretch="Fill" Grid.Row="1"/>
+            <Label Content="QR CHECKING" HorizontalAlignment="Left" Margin="144,29.4,0,0" Grid.Row="1" VerticalAlignment="Top" Height="52" Width="186" Foreground="White" FontSize="30" FontFamily="Calibri"/>
+        </Grid>
+
+        <Image x:Name="ConnError" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="140,45,0,0" Grid.Row="2" Source="/QR_Checking_winVersion;component/Resources/connection_error_white.png" Visibility="Hidden"/>
+        <Image x:Name="RefreshButton" HorizontalAlignment="Left" Height="40" Margin="170,183,0,0" VerticalAlignment="Top" Width="42" Style="{StaticResource RefreshButtonWhite_change}" MouseDown="RefreshButton_MouseDown" Visibility="Hidden" Grid.Row="2"/>
+        <Image x:Name="RefreshButtonInternetChecking" HorizontalAlignment="Left" Height="40" Margin="170,183,0,0" VerticalAlignment="Top" Width="42" Style="{StaticResource RefreshButtonWhiteInternetChecking_change}" Visibility="Hidden" Grid.Row="2" MouseDown="RefreshButtonInternetChecking_MouseDown"/>
+        <Image x:Name="Connection_Image" HorizontalAlignment="Left" Height="61" Margin="159,94,0,0" VerticalAlignment="Top" Width="61" Source="/QR_Checking_winVersion;component/Resources/loading.png" Visibility="Hidden" Grid.Row="2">
+            <Image.RenderTransform>
+                <RotateTransform x:Name="rotate1"
+                         CenterX="30.5"
+                         CenterY="30.5"/>
+            </Image.RenderTransform>
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard RepeatBehavior="Forever">
+                            <DoubleAnimation Storyboard.TargetName="rotate1"
+                                     Storyboard.TargetProperty="Angle"
+                                     By="360" Duration="0:0:1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
+    </Grid>
+</Window>

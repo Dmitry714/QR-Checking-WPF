@@ -1,0 +1,103 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:QR_Checking_winVersion"
+      xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" x:Class="QR_Checking_winVersion.QR_GEN_Page"
+      mc:Ignorable="d" 
+      d:DesignHeight="424" d:DesignWidth="726.4"
+      Title="QR_GEN_Page" Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/QR_Checking_winVersion;component/OtherPagesResources.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="63*"/>
+            <RowDefinition Height="361*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" x:Name="GridControls" Visibility="Hidden">
+            <Label Content="Время действия:" HorizontalAlignment="Left" Margin="31,10,0,0" VerticalAlignment="Top" FontSize="24"/>
+            <ComboBox x:Name="UpdateTime" HorizontalAlignment="Left" Margin="35,57,0,0" VerticalAlignment="Top" Width="281" Height="27" SelectedIndex="0" FontFamily="Calibri" FontSize="16">
+                <ComboBoxItem Content="30 секунд" FontFamily="Calibri" FontSize="16"/>
+                <ComboBoxItem Content="60 секунд" FontFamily="Calibri" FontSize="16"/>
+                <ComboBoxItem Content="90 секунд" FontFamily="Calibri" FontSize="16"/>
+                <ComboBoxItem Content="120 секунд" FontFamily="Calibri" FontSize="16"/>
+            </ComboBox>
+            <Label x:Name="DisciplineLabel" Content="Учебный предмет:" HorizontalAlignment="Left" Margin="31,194,0,0" VerticalAlignment="Top" FontSize="24"/>
+            <ComboBox x:Name="DisciplineComboBox" FontFamily="Calibri" FontSize="16" HorizontalAlignment="Left" Margin="35,241,0,0" VerticalAlignment="Top" Width="281" Height="27" SelectedIndex="0" MaxDropDownHeight="150"/>
+            <Label x:Name="EventLabel" Content="Событие:" HorizontalAlignment="Left" Margin="31,194,0,0" VerticalAlignment="Top" FontSize="24" Visibility="Collapsed"/>
+            <TextBox x:Name="EventTextBox" HorizontalAlignment="Left" FontSize="16" Height="29" Margin="35,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" Visibility="Collapsed" MaxLength="47" PreviewTextInput="EventTextBox_PreviewTextInput"/>
+
+            <Label Content="Учебная группа:" HorizontalAlignment="Left" Margin="31,103,0,0" VerticalAlignment="Top" FontSize="24"/>
+            <ComboBox x:Name="Groups" FontFamily="Calibri" FontSize="16" HorizontalAlignment="Left" Margin="35,149,0,0" VerticalAlignment="Top" Width="281" Height="27" SelectedIndex="0" MaxDropDownHeight="150" SelectionChanged="Groups_SelectionChanged" Background="White"/>
+            <Button x:Name="create_qr_code" Content="Создать" HorizontalAlignment="Center" Margin="246,315,226.4,0" VerticalAlignment="Top" Width="254" Height="36" FontSize="22" FontFamily="Calibri" Style="{StaticResource other_buttons}" Click="create_qr_code_Click"/>
+
+            <Label Content="Начало:" HorizontalAlignment="Left" Margin="405,10,0,0" VerticalAlignment="Top" FontSize="24"/>
+            <Label Content="Время:" HorizontalAlignment="Left" Margin="406,55,0,0" VerticalAlignment="Top" Height="29" Width="57" FontSize="16"/>
+            <ComboBox x:Name="HoursComboBoxBegin" FontSize="16" HorizontalAlignment="Left" Margin="468,54,0,0" VerticalAlignment="Top" Width="39" Height="29" RenderTransformOrigin="0.5,0.5"/>
+            <Label Content=":" HorizontalAlignment="Left" Margin="511,55,0,0" VerticalAlignment="Top" Height="29" Width="12" FontSize="16"/>
+            <ComboBox x:Name="MinutesComboBoxBegin" FontSize="16" HorizontalAlignment="Left" Margin="525,54,0,0" VerticalAlignment="Top" Width="37" Height="29" RenderTransformOrigin="0.5,0.5"/>
+            <Label Content="Дата:" HorizontalAlignment="Left" Margin="570,55,0,0" VerticalAlignment="Top" Height="28" Width="46" FontSize="16"/>
+            <DatePicker x:Name="DateBegin" HorizontalAlignment="Left" FontSize="16" Margin="616,54,0,0" VerticalAlignment="Top" Width="100"/>
+
+            <Label Content="Конец:" HorizontalAlignment="Left" Margin="405,103,0,0" VerticalAlignment="Top" FontSize="24"/>
+            <Label Content="Время:" HorizontalAlignment="Left" Margin="406,147,0,0" VerticalAlignment="Top" Height="29" Width="57" FontSize="16"/>
+            <ComboBox x:Name="HoursComboBoxEnd" FontSize="16" HorizontalAlignment="Left" Margin="468,146,0,0" VerticalAlignment="Top" Width="39" Height="29" RenderTransformOrigin="0.5,0.5"/>
+            <Label Content=":" HorizontalAlignment="Left" Margin="511,147,0,0" VerticalAlignment="Top" Height="29" Width="12" FontSize="16"/>
+            <ComboBox x:Name="MinutesComboBoxEnd" FontSize="16" HorizontalAlignment="Left" Margin="525,146,0,0" VerticalAlignment="Top" Width="37" Height="29" RenderTransformOrigin="0.5,0.5"/>
+            <Label Content="Дата:" HorizontalAlignment="Left" Margin="570,147,0,0" VerticalAlignment="Top" Height="28" Width="46" FontSize="16"/>
+            <DatePicker x:Name="DateEnd" HorizontalAlignment="Left" FontSize="16" Margin="616,146,0,0" VerticalAlignment="Top" Width="100"/>
+
+            <Label x:Name="LocationLabel" Content="Место:" HorizontalAlignment="Left" Margin="405,194,0,0" VerticalAlignment="Top" FontSize="24"/>
+            <TextBox x:Name="LocationTextBox" HorizontalAlignment="Left" FontSize="16" Height="29" Margin="410,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" MaxLength="150" PreviewTextInput="LocationTextBox_PreviewTextInput"/>
+        </Grid>
+
+        <Label Content="Создать QR-код" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top" Height="53" Width="233" FontSize="30"/>
+        <Image x:Name="ConnError" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="314,98.8,0,0" Grid.Row="1" Source="/QR_Checking_winVersion;component/Resources/connection_error.png" Visibility="Hidden"/>
+        <Image x:Name="Loading" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="314,108.8,0,0" Source="/QR_Checking_winVersion;component/Resources/loading_black.png" Grid.Row="1" Visibility="Hidden">
+            <Image.RenderTransform>
+                <RotateTransform x:Name="rotate"
+                         CenterX="50"
+                         CenterY="50"/>
+            </Image.RenderTransform>
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                    <BeginStoryboard>
+                        <Storyboard RepeatBehavior="Forever">
+                            <DoubleAnimation Storyboard.TargetName="rotate"
+                                     Storyboard.TargetProperty="Angle"
+                                     By="360" Duration="0:0:1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
+
+        <Image x:Name="miniLoading" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="36" Margin="677,14,0,0" Source="/QR_Checking_winVersion;component/Resources/loading_black.png" Visibility="Hidden">
+            <Image.RenderTransform>
+                <RotateTransform x:Name="rotate2"
+                    CenterX="18"
+                    CenterY="18"/>
+            </Image.RenderTransform>
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard RepeatBehavior="Forever">
+                            <DoubleAnimation Storyboard.TargetName="rotate2"
+                                     Storyboard.TargetProperty="Angle"
+                                     By="360" Duration="0:0:1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
+        <Image x:Name="RefreshButton" HorizontalAlignment="Left" Height="21" Margin="253,25,0,0" VerticalAlignment="Top" Width="22" Style="{StaticResource RefreshButton_change}" MouseDown="RefreshButton_MouseDown" Visibility="Visible"/>
+    </Grid>
+</Page>

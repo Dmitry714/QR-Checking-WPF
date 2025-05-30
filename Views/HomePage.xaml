@@ -1,0 +1,47 @@
+﻿<Page x:Class="QR_Checking_winVersion.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:QR_Checking_winVersion"
+      mc:Ignorable="d" 
+      d:DesignHeight="424" d:DesignWidth="726.4"
+      Title="HomePage">
+
+    <Grid Background="White" x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="206*"/>
+            <RowDefinition Height="183*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Главная" HorizontalAlignment="Left" Margin="14,10,0,0" VerticalAlignment="Top" Height="61" Width="121" FontSize="30" Grid.RowSpan="2"/>
+        <Image x:Name ="admin_panel_button" HorizontalAlignment="Left" Height="136" Margin="30,28.2,0,0" VerticalAlignment="Top" Width="136" Grid.Row="1" Style="{StaticResource admin_panel_button_change}" MouseDown="admin_panel_button_MouseDown"/>
+        <Image x:Name="stat_button" HorizontalAlignment="Left" Height="136" Margin="205,28.2,0,0" VerticalAlignment="Top" Width="136" Grid.Row="1" Style="{StaticResource stat_button_change}" RenderTransformOrigin="0.615,0.496" MouseDown="stat_button_MouseDown"/>
+        <Image x:Name="report_button" HorizontalAlignment="Left" Height="136" Margin="378,28.2,0,0" VerticalAlignment="Top" Width="136" Grid.Row="1" Style="{StaticResource report_button_change}" MouseDown="report_button_MouseDown"/>
+        <Image x:Name="info_button" MouseDown="info_button_MouseDown" HorizontalAlignment="Left" Height="136" Margin="554,28.2,0,0" VerticalAlignment="Top" Width="136" Grid.Row="1" Style="{StaticResource info_button_change}"/>
+        <Label Content="Ссылки" HorizontalAlignment="Left" Margin="14,9.8,0,0" VerticalAlignment="Top" Height="52" Width="121" FontSize="30" Grid.Row="2"/>
+        <Label x:Name="checkIpLink" Content="Узнать IP-адрес &gt;&gt;" HorizontalAlignment="Left" Margin="14,87.8,0,0" VerticalAlignment="Top" Height="33" Width="190" FontSize="20" Grid.Row="2" Cursor="Hand" FontStyle="Italic" Style="{StaticResource mainPageLinks_change}" MouseDown="checkIpLink_MouseDown"/>
+        <Label x:Name="dbAdminPanel" Content="База данных (phpMyAdmin) &gt;&gt;" HorizontalAlignment="Left" Margin="14,123.8,0,0" VerticalAlignment="Top" Height="34" Width="301" FontSize="20" Grid.Row="2" Cursor="Hand" FontStyle="Italic" Style="{StaticResource mainPageLinks_change}" MouseDown="dbAdminPanel_MouseDown"/>
+        <Image x:Name="vk_button" MouseDown="vk_button_MouseDown" HorizontalAlignment="Left" Height="45" Margin="671,117.8,0,0" Grid.Row="2" VerticalAlignment="Top" Width="45" Style="{StaticResource vk_button_change}"/>
+        <Image x:Name="tg_button" MouseDown="tg_button_MouseDown" HorizontalAlignment="Left" Height="45" Margin="621,117.8,0,0" Grid.Row="2" VerticalAlignment="Top" Width="45" Style="{StaticResource tg_button_change}"/>
+        <Image x:Name="insta_button" MouseDown="insta_button_MouseDown" HorizontalAlignment="Left" Height="45" Margin="571,117.8,0,0" Grid.Row="2" VerticalAlignment="Top" Width="45" Style="{StaticResource insta_button_change}"/>
+        <Image x:Name="miniLoading" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="36" Margin="677,14,0,0" Source="/QR_Checking_winVersion;component/Resources/loading_black.png" Visibility="Hidden">
+            <Image.RenderTransform>
+                <RotateTransform x:Name="rotate"
+                    CenterX="18"
+                    CenterY="18"/>
+            </Image.RenderTransform>
+            <Image.Triggers>
+                <EventTrigger RoutedEvent="Loaded">
+                    <BeginStoryboard>
+                        <Storyboard RepeatBehavior="Forever">
+                            <DoubleAnimation Storyboard.TargetName="rotate"
+                                     Storyboard.TargetProperty="Angle"
+                                     By="360" Duration="0:0:1"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Image.Triggers>
+        </Image>
+    </Grid>
+</Page>

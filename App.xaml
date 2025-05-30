@@ -1,0 +1,270 @@
+﻿<Application x:Class="QR_Checking_winVersion.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:QR_Checking_winVersion"
+             StartupUri="Views/AuthPage.xaml">
+    <Application.Resources>
+
+        <Style x:Key="closeButton_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/close-button.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=Close_button}" Value="True">
+                    <Setter Property="Source" Value="Resources/close-button_active_state.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="eventButton_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/event_ds.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=Event_button}" Value="True">
+                    <Setter Property="Source" Value="Resources/event_as.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="expandButton_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/Expand_ds.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=Expand_button}" Value="True">
+                    <Setter Property="Source" Value="Resources/Expand_as.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="RefreshButton_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/refresh_ds.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=RefreshButton}" Value="True">
+                    <Setter Property="Source" Value="Resources/refresh_as.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="RefreshButtonWhite_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/refresh_white_ds.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=RefreshButton}" Value="True">
+                    <Setter Property="Source" Value="Resources/refresh_white_as.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="RefreshButtonWhiteInternetChecking_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/refresh_white_ds.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=RefreshButtonInternetChecking}" Value="True">
+                    <Setter Property="Source" Value="Resources/refresh_white_as.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="hideButton_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/minimize-button.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=Hide_button}" Value="True">
+                    <Setter Property="Source" Value="Resources/minimize-button_active_state.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="backButton_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/back_ds.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=Back_Button}" Value="True">
+                    <Setter Property="Source" Value="Resources/back_as.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="auth_button" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#FF0A3356"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#FF0A3356"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF165790"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="other_buttons" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#FF1970BA"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#FF1970BA"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF1D5C91"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="Home_button_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/home-button.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=Home_button}" Value="True">
+                    <Setter Property="Source" Value="Resources/home-button_active_state.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="MyProfile_button_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/user-profile.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=MyProfile_button}" Value="True">
+                    <Setter Property="Source" Value="Resources/user-profile_active_state.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="QR_Generate_button_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/qr-code-scan.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=QR_Generate_button}" Value="True">
+                    <Setter Property="Source" Value="Resources/qr-code-scan_active_state.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="QR_Generate_button_Done_State" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/QR_GENERATED.png"/>
+        </Style>
+
+        <Style x:Key="Settings_button_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/settings.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=Settings_button}" Value="True">
+                    <Setter Property="Source" Value="Resources/settings_active_state.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style x:Key="admin_panel_button_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/admin_panel_button.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=admin_panel_button}" Value="True">
+                    <Setter Property="Source" Value="Resources/admin_panel_button_as.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style x:Key="stat_button_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/stat_button.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=stat_button}" Value="True">
+                    <Setter Property="Source" Value="Resources/stat_button_as.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        
+        <Style x:Key="report_button_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/report_button.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=report_button}" Value="True">
+                    <Setter Property="Source" Value="Resources/report_button_as.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="info_button_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/info_button.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=info_button}" Value="True">
+                    <Setter Property="Source" Value="Resources/info_button_as.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="vk_button_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/vk_button.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=vk_button}" Value="True">
+                    <Setter Property="Source" Value="Resources/vk_button_as.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="tg_button_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/tg_button.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=tg_button}" Value="True">
+                    <Setter Property="Source" Value="Resources/tg_button_as.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="insta_button_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/insta_button.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=insta_button}" Value="True">
+                    <Setter Property="Source" Value="Resources/insta_button_as.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="mainPageLinks_change" TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="#FF009CFA"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
+                    <Setter Property="Foreground" Value="#FF0B679F"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="authPageLinks_change" TargetType="{x:Type Label}">
+            <Setter Property="Foreground" Value="#FFB3B3B3"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True">
+                    <Setter Property="Foreground" Value="White"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style x:Key="mData_button_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/mData_button.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=mData_button}" Value="True">
+                    <Setter Property="Source" Value="Resources/mData_button_as.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="aData_button_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/aData_button.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=aData_button}" Value="True">
+                    <Setter Property="Source" Value="Resources/aData_button_as.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="dAccount_button_change" TargetType="{x:Type Image}">
+            <Setter Property="Source" Value="Resources/dAccount_button.png"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsMouseOver, ElementName=dAccount_button}" Value="True">
+                    <Setter Property="Source" Value="Resources/dAccount_button_as.png"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </Application.Resources>
+</Application>
